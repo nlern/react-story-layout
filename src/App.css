@@ -1,0 +1,204 @@
+:root {
+  --width: 640px;
+  --animation-timing: 4s;
+  --primary: #118ab2;
+  --white: #fff;
+  --black: #000;
+  --button-size: 40px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.stories {
+  display: flex;
+  justify-content: center;
+  max-width: var(--width);
+  margin: 50px auto;
+}
+
+.thumbnail {
+  display: block;
+  margin: 10px;
+  border-radius: 60px;
+}
+
+.thumbnail img {
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--primary);
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.thumbnail span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.backdrop {
+  background: var(--black);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 101;
+}
+
+.close svg {
+  fill: var(--white);
+  height: 40px;
+  width: 40px;
+}
+
+.story {
+  background: var(--black);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 400px;
+  border-radius: 8px;
+  width: 100%;
+  margin: auto;
+  padding: 15px;
+  position: relative;
+  z-index: 100;
+}
+
+.story::before {
+  content: '';
+  width: 100%;
+  height: 130px;
+  left: 0;
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  position: absolute;
+}
+
+.indicators {
+  display: flex;
+  grid-gap: 10px;
+  justify-content: space-between;
+  margin: 5px 0 10px;
+}
+
+.indicator {
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 12px;
+  background: #ccc;
+  position: relative;
+  overflow: hidden;
+}
+
+.indicator.active {
+  transition: transform 1s ease;
+}
+
+.indicator.complete {
+  background: var(--primary);
+}
+
+.indicator.active::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--primary);
+  animation: fill var(--animation-timing) ease;
+}
+
+@keyframes fill {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.slide {
+  min-height: 550px;
+  position: relative;
+}
+
+.user-info img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info span {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.label {
+  color: var(--white);
+  text-align: center;
+  font-size: 16px;
+  background: var(--black);
+  padding: 5px;
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prev-next {
+  position: absolute;
+  top: calc(50% - var(--button-size) / 2);
+  left: 5px;
+  right: 5px;
+}
+
+.prev-next button {
+  position: absolute;
+  background: var(--white);
+  height: var(--button-size);
+  width: var(--button-size);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.prev-next button:first-child {
+  left: 0;
+}
+
+.prev-next button:last-child {
+  right: 0;
+}
+
+/* Slight repositioning of the elements on mobile */
+@media screen and (min-width: 520px) {
+  .prev-next {
+    left: -50px;
+    right: -50px;
+  }
+}
